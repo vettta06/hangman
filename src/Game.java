@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Game {
-    private static final Scanner scanner = new Scanner(System.in);
+    public static final Scanner scanner = new Scanner(System.in);
 
     public static String getUserInput() {
         System.out.print("Введите букву: ");
@@ -13,10 +13,12 @@ public class Game {
         return input;
     }
 
-    public static void printState(game.Hangman game) {
+
+    public static void printState(Hangman game) {
         System.out.println("\nСлово: " + game.printWord());
         System.out.println("Осталось попыток: " + game.getCurrentAttempts());
     }
+
 
     public static void showHint(String hint) {
         if (hint != null && !hint.trim().isEmpty()) {
@@ -24,17 +26,20 @@ public class Game {
         }
     }
 
+
     public static void printHead(String text) {
         int width = 100;
         String padded = String.format("%" + (width / 2 + text.length() / 2) + "s", text);
         System.out.println(padded);
     }
 
+
     public static void printCategories(String title, java.util.List<String> items) {
         System.out.println(title + ":");
         String formatted = String.join(" • ", items);
         System.out.println("  " + formatted);
     }
+
 
     public static void printResult(String word, boolean win) {
         if (win) {
@@ -43,6 +48,7 @@ public class Game {
             System.out.println("\nВы проиграли, загаданное слово было " + word);
         }
     }
+
 
     public static void close() {
         scanner.close();

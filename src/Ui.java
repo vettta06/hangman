@@ -65,6 +65,7 @@ public class Ui {
         """
     };
 
+
     public static void draw(int wrongAnswers) {
         if (wrongAnswers == 0) return;
 

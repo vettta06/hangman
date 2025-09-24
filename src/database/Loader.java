@@ -15,6 +15,7 @@ public class Loader {
         }
     }
 
+
     public static WordWithHint getRandomWord(String category, String difficulty) {
         Map<String, Map<String, List<String>>> categories = WordBase.getWordsByCategory();
         Map<String, String> hints = WordBase.getHints();
@@ -23,27 +24,27 @@ public class Loader {
             category = getRandomKey(categories.keySet());
         }
 
+        Map<String, List<String>> categoryMap = categories.get(category);
+        if (categoryMap == null) {
+            throw new IllegalArgumentException("Категория не найдена: " + category);
+        }
+
         if (difficulty == null || difficulty.trim().isEmpty()) {
-            Map<String, List<String>> categoryMap = categories.get(category);
-            if (categoryMap == null) {
-                throw new IllegalArgumentException("Категория не найдена: " + category);
-            }
             difficulty = getRandomKey(categoryMap.keySet());
         }
 
-        List<String> words = categories.get(category).get(difficulty);
+        List<String> words = categoryMap.get(difficulty);
         if (words == null || words.isEmpty()) {
             throw new IllegalArgumentException("Нет слов для категории '" + category + "', сложности '" + difficulty + "'");
         }
-
         String word = words.get(random.nextInt(words.size()));
         String hint = hints.getOrDefault(word, "");
-
         return new WordWithHint(word, hint);
     }
 
+
     private static <T> T getRandomKey(Collection<T> collection) {
         List<T> list = new ArrayList<>(collection);
-        return list.get(new Random().nextInt(list.size()));
+        return list.get(random.nextInt(list.size()));
     }
 }

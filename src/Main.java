@@ -1,9 +1,4 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import database.WordBase;
-import main.NonInteractiveMode;
-import InteractiveMode;
-
 import java.util.List;
 
 public class Main {
@@ -13,6 +8,6 @@ public class Main {
         } else {
             InteractiveMode.run();
         }
-        UIUtils.close();
+        Game.close();
     }
 }

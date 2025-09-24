@@ -1,4 +1,3 @@
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,26 +7,29 @@ public class Hangman {
     private int attemptsLeft;
     private final Set<Character> guessedLetters = new HashSet<>();
 
+
     public Hangman(String word, int maxAttempts) {
         this.secretWord = word.toLowerCase();
         this.maxAttempts = maxAttempts;
         this.attemptsLeft = maxAttempts;
     }
 
+
     public boolean attemptGuess(char letter) {
         char lowerLetter = Character.toLowerCase(letter);
         if (guessedLetters.contains(lowerLetter)) {
-            return true; // уже угадана — не тратим попытку
+            return true;
         }
 
         guessedLetters.add(lowerLetter);
         if (secretWord.indexOf(lowerLetter) >= 0) {
-            return true; // угадал
+            return true;
         } else {
             attemptsLeft--;
-            return false; // не угадал
+            return false;
         }
     }
+
 
     public String printWord() {
         StringBuilder sb = new StringBuilder();
@@ -36,6 +38,7 @@ public class Hangman {
         }
         return sb.toString();
     }
+
 
     public boolean isWin() {
         for (char c : secretWord.toCharArray()) {
@@ -46,17 +49,21 @@ public class Hangman {
         return true;
     }
 
+
     public boolean isLose() {
         return attemptsLeft <= 0;
     }
+
 
     public int getCurrentAttempts() {
         return attemptsLeft;
     }
 
+
     public String getSecretWord() {
         return secretWord;
     }
+
 
     public Set<Character> getGuessedLetters() {
         return new HashSet<>(guessedLetters);
