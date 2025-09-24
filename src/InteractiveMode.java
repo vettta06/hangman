@@ -1,12 +1,10 @@
 import database.Loader;
-import Game;
-import Hangman;
-
+import database.WordBase;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class InteractiveMode {
-
     public static String selectCategory(Map<String, Map<String, List<String>>> categories) {
         System.out.print("Выберите категорию или оставьте эту ячейку пустой: ");
         String category = Game.scanner.nextLine().trim();
@@ -16,6 +14,7 @@ public class InteractiveMode {
         }
         return category;
     }
+
 
     public static String selectDifficulty(Map<String, List<String>> categoryMap) {
         List<String> difficulties = List.copyOf(categoryMap.keySet());
@@ -29,10 +28,12 @@ public class InteractiveMode {
         return difficulty;
     }
 
+
     public static String getRandomKey(java.util.Collection<String> collection) {
         java.util.List<String> list = java.util.List.copyOf(collection);
         return list.get((int) (Math.random() * list.size()));
     }
+
 
     public static void run() {
         Map<String, Map<String, List<String>>> categories = WordBase.getWordsByCategory();
@@ -64,15 +65,16 @@ public class InteractiveMode {
                     System.out.println("Верно!\n");
                 } else {
                     int wrongAnswers = 6 - game.getCurrentAttempts();
-                    HangmanVisual.draw(wrongAnswers);
+                    Ui.draw(wrongAnswers);
                 }
             }
             Game.printState(game);
         }
 
+
         if (game.isLose()) {
-            int wrongAnswers = 6 - game.getCurrentAttempts();
-            HangmanVisual.draw(wrongAnswers);
+            int wrongAnswers = 7 - game.getCurrentAttempts();
+            Ui.draw(wrongAnswers);
         }
         Game.printResult(game.getSecretWord(), game.isWin());
     }

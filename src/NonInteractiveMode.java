@@ -1,9 +1,3 @@
-
-import Hangman;
-import database.Loader;
-
-import java.util.Arrays;
-
 public class NonInteractiveMode {
 
     public static void run(String secretWord, String guessedLetters) {
@@ -17,7 +11,6 @@ public class NonInteractiveMode {
 
         Hangman game = new Hangman(secretWord, 6);
 
-        // Обрабатываем ввод: либо через запятую, либо как строку
         if (guessedLetters.contains(",")) {
             String[] letters = guessedLetters.split(",");
             for (String letter : letters) {
