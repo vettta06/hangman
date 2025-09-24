@@ -73,7 +73,7 @@ public class InteractiveMode {
 
 
         if (game.isLose()) {
-            int wrongAnswers = 6 - game.getCurrentAttempts();
+            int wrongAnswers = 7 - game.getCurrentAttempts();
             Ui.draw(wrongAnswers);
         }
         Game.printResult(game.getSecretWord(), game.isWin());
